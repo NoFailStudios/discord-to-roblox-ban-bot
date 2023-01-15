@@ -82,7 +82,7 @@ async def ban(ctx, user,*, reason=None):
       msg = await bot.wait_for('message', timeout=30, check=check)
     except:
       return await ctx.send('You either have typing issues or didnt say anything, aborting....')
-    if msg.content == 'cancel'.lower():
+    if msg.content == 'cancel':
       return await ctx.send('aborting...')
     reason=msg.content
 
