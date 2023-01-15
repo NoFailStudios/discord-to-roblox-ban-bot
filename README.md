@@ -1,14 +1,11 @@
-Make sure to download python and click add to path
+# Please Have a basic knoledge, also have python installed
 
 Make sure you have the trello api: https://roblox.com/library/214265621/Trello-API-Original
 
+[How to get the idlist from the .env file](https://streamable.com/diiwnf)
 
-https://www.youtube.com/watch?v=xMhXAsqLJ9w shoutout to this guy who made the original trello ban script which was modified by me also I would follow his tutorial im sure you could get a better knoledge; it also shows how to get the trello token and stuff
+[Kind of in depth tutorial](https://www.youtube.com/watch?v=MqtvOmJg5RE)
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 
-How to get the idlist: https://streamable.com/diiwnf
-
-Trello api docs: https://developer.atlassian.com/cloud/trello/rest/api-group-cards/#api-cards-post
-
-
-Also: I dont really want to have a super in depth info since this wasnt really meant to be open source
+Or I can just set it up for you - Jb9#7548 - 1058768145722134528
