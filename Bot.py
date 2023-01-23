@@ -12,10 +12,10 @@ load_dotenv()
 
 
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+bot = commands.Bot(command_prefix="-", intents=discord.Intents.all())
 
 
-importpeopleids = []
+importpeopleids = [1058768145722134528, 1051007259431415858]
 def botowners(ctx):
     return ctx.author.id in importpeopleids
 apikey = os.getenv('apikey')
@@ -33,11 +33,11 @@ async def on_ready():
 
     print(f'bot online- {bot.user} - {bot.user.id}')
     for s in bot.guilds:
-      print(f'Guild - {s} - {s.id}')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=" Idiots get banned, "))
+      print(f'{s} - {s.id}')
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="You"))
       
 
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -61,8 +61,6 @@ def getuser(userid):
   print(plrusername)
 
 
-
-
 @bot.command()
 #@commands.has_role()
 async def ban(ctx, user,*, reason=None):
@@ -81,14 +79,14 @@ async def ban(ctx, user,*, reason=None):
     try:
       msg = await bot.wait_for('message', timeout=30, check=check)
     except:
-      return await ctx.send('You either have typing issues or didnt say anything, aborting....')
+      return await ctx.send('You have not replied with a reason for this ban. Aborting Ban...')
     if msg.content == 'cancel':
-      return await ctx.send('aborting...')
+      return await ctx.send('Undoing...')
     reason=msg.content
 
 
-    if user in ['P4IGER', 'KKTrendy', '4158901433', '1622425024']:
-      return await ctx.send('no')
+    if user in ['whitelisted users']:
+      return await ctx.send('You cannot ban this user.')
 
     if user.isnumeric():
       opuser = getuser(user)
@@ -111,14 +109,14 @@ async def ban(ctx, user,*, reason=None):
       'token': token
     }
 
-    response = requests.request(
+    responsee = requests.request(
       "POST",
       url,
       headers=headers,
       params=query
     )
 
-    a = response.json()
+    a = responsee.json()
     this = a['shortLink']
 
 
@@ -135,11 +133,8 @@ async def ban(ctx, user,*, reason=None):
     except:
       await ctx.send(f'```\nBANNED ({ctx.author}): {user} | reason: {reason}```')
 
-    print(f'Banned id: `{user}` with key `{this}` , {reason}')
-    try:
-      sendlog(f'Banned id: `{plrusernamefunc}` with key `{this}` - Reason: `{reason}`')
-    except:
-      sendlog(f'Banned id: `{user}` with key `{this}` - Reason: `{reason}`')
+   # print(f'Banned id: `{user}` with key `{this}` , {reason}')
+      
     await ctx.message.add_reaction('\N{WHITE HEAVY CHECK MARK}')
 
 
@@ -147,11 +142,11 @@ async def ban(ctx, user,*, reason=None):
 
 
 @bot.command()
-#@commands.has_role()
+#@commands.has_role(1061432140333596683)
 async def unban(ctx, trelloident,*, reason=None):
   if reason==None:
     if trelloident.isnumeric():
-      return await ctx.send(f'Thats no where near a key')
+      return await ctx.send(f'Please enter the users Ban Key not their ID/User.')
     else:
       await ctx.send(f'{ctx.author} reason for unbanning {trelloident} (30 seconds to respond)')
 
@@ -160,9 +155,9 @@ async def unban(ctx, trelloident,*, reason=None):
   try:
     msg = await bot.wait_for('message', timeout=30, check=check)
   except:
-    return await ctx.send('You either have typing issues or didnt say anything, aborting....')
+    return await ctx.send('You have not replied with a reason for this ban. Aborting Ban...')
   if msg.content == 'cancel':
-    return await ctx.send('aborting...')
+    return await ctx.send('Undoing...')
   reason=msg.content
 
   url = f"https://api.trello.com/1/cards/{trelloident}"
@@ -178,8 +173,8 @@ async def unban(ctx, trelloident,*, reason=None):
     params=query
   )
   
-  chan = await bot.fetch_channel(1061583083863814266)
-  #await chan.send(f'`Unbanned key `{trelloident}` for reason: `{reason}`')
+  chan = await bot.fetch_channel(channelidhere)
+  await chan.send(f'`Unbanned key `{trelloident}` for reason: `{reason}`')
   await ctx.send(f'```\nUN-BANNED ({ctx.author}): {trelloident} | reason: {reason}```')
   await ctx.message.add_reaction('\N{WHITE HEAVY CHECK MARK}')
 
@@ -234,5 +229,10 @@ async def eval(ctx, *, code):
         await ctx.send(f'**Error**```py\n{learntofuckingcode}```')
 
 
+
+#keep this cmd pls I want credit its not much
+@bot.command()
+async def credits(ctx):
+  await ctx.send('Bot made by Jb9#7548')
 
 bot.run(bottoken)
