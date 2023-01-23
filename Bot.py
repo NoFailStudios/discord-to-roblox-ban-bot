@@ -172,9 +172,6 @@ async def unban(ctx, trelloident,*, reason=None):
     url,
     params=query
   )
-  
-  chan = await bot.fetch_channel(channelidhere)
-  await chan.send(f'`Unbanned key `{trelloident}` for reason: `{reason}`')
   await ctx.send(f'```\nUN-BANNED ({ctx.author}): {trelloident} | reason: {reason}```')
   await ctx.message.add_reaction('\N{WHITE HEAVY CHECK MARK}')
 
