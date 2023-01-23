@@ -133,7 +133,7 @@ async def ban(ctx, user,*, reason=None):
     except:
       await ctx.send(f'```\nBANNED ({ctx.author}): {user} | reason: {reason}```')
 
-   # print(f'Banned id: `{user}` with key `{this}` , {reason}')
+    sendlog(f'Banned id: `{user}` with key `{this}` , {reason}')
       
     await ctx.message.add_reaction('\N{WHITE HEAVY CHECK MARK}')
 
