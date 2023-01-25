@@ -9,3 +9,4 @@ Make sure you have the trello api: https://roblox.com/library/214265621/Trello-A
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 Or I can just set it up for you - Jb9#7548 - 1058768145722134528
+willing to help anyone except people with rip off da hood games
